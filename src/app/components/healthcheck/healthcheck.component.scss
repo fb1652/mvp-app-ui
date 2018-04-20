@@ -1,0 +1,35 @@
+@import '~themes.scss';
+
+.justify-left > ::ng-deep figure {
+  display: block;
+}
+
+.high {
+  float: left;
+  width: 30%;
+  background-color: mat-color($color-red, 200);
+}
+
+.medium {
+  float: left;
+  width: 30%;
+  background-color: mat-color($color-yellow, 200);
+}
+
+.low {
+  float: left;
+  width: 30%;
+  background-color: mat-color($color-blue, 200);
+}
+
+::ng-deep app-healthcheck .hidden .mat-tab-header {
+  display: none !important;
+}
+
+::ng-deep app-healthcheck .tabs .mat-tab-header {
+  display: flex !important; // original
+}
+
+::ng-deep app-healthcheck .tabs .mat-tab-label-active {
+  background-color: mat-color($primary, 100);
+}

@@ -1,0 +1,36 @@
+<mat-toolbar class="search">
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="filterValue" (keyup)="filter()">
+    <span matPrefix aria-label="Search">
+      <mat-icon class="search-icon">search</mat-icon>
+    </span>
+    <span matSuffix aria-label="Clear">
+      <mat-icon *ngIf="filterValue && filterValue !== ''" (click)="clear()">close</mat-icon>
+    </span>
+  </mat-form-field>
+</mat-toolbar>
+<mat-table [dataSource]="table" matSort>
+  <ng-container matColumnDef="owner">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Owner</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <a href="javascript:;">{{element.owner}}</a>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="check">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Check</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <a href="javascript:;">{{element.check}}</a>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="severity">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Severity</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <div class="{{severity(element.severity)}}"></div>
+      &nbsp;&nbsp;
+      <a href="javascript:;">{{element.severity}}</a>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let row;columns: columnsToDisplay; let index = index"
+    (click)="selected(row)" matRipple></mat-row>
+</mat-table>

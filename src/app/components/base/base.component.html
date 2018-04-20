@@ -1,0 +1,88 @@
+<mat-sidenav-container id="offering_sidenav-container">
+  <mat-sidenav #sidenav class="sidemenu" mode="side" position="start">under construction</mat-sidenav>
+  <mat-sidenav-content class="app-content">
+    <mat-toolbar color="primary" class="header">
+      <div class="menu">
+        <button class="primary" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <a href="" aria-label="CA" class="logo">
+        <img alt="CA" src="assets/ca-logo-white.svg">
+      </a>
+      <div id="header-title" class="title">{{title}}</div>
+      <span class="space"></span>
+      <a (click)="help()" class="help" aria-label="Help" id="help-guidance">
+        <mat-icon >help_outline</mat-icon>
+      </a>
+      <button id="header-menu" class="username" [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+        <mat-icon class="fa fa-sort-down" aria-hidden="true"></mat-icon>
+      </button>
+      <mat-menu id="header-account" #menu="matMenu">
+        <button mat-menu-item (click)="changePassword()">
+          <span>Change Password</span>
+        </button>
+        <button id="header-logout" mat-menu-item (click)="logout()">
+          <mat-icon>power_settings_new</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <mat-toolbar color="primary" class="sub-header"></mat-toolbar>
+    <div class="sidenav">
+      <a id="catalog-link" href="/Catalog" routerLink="/Catalog">
+        <button matTooltip="Catalog" matTooltipPosition="after"
+        [ngClass]="{active: active === 'Catalog'}">
+          <mat-icon>home</mat-icon>
+        </button>
+      </a>
+      <a id="reports-link" href="/Reports" routerLink="/Reports">
+        <button matTooltip="Reports" matTooltipPosition="after"
+          [ngClass]="{active: active === 'Reports'}">
+          <mat-icon>poll</mat-icon>
+        </button>
+      </a>
+      <a id="datacenters-link" href="/Datacenters" routerLink="/Datacenters">
+        <button matTooltip="Datacenters" matTooltipPosition="after"
+          [ngClass]="{active: active === 'Datacenters'}">
+          <mat-icon>domain</mat-icon>
+        </button>
+      </a>
+      <a id="toolkit-link" href="/Toolkit" routerLink="/Toolkit">
+        <button matTooltip="Toolkit" matTooltipPosition="after"
+          [ngClass]="{active: active === 'Toolkit'}">
+          <mat-icon>file_download</mat-icon>
+        </button>
+      </a>
+      <a id="about-link" href="/About" routerLink="/About">
+        <button matTooltip="About" matTooltipPosition="after"
+          [ngClass]="{active: active === 'About'}">
+          <mat-icon>info_outline</mat-icon>
+        </button>
+      </a>
+    </div>
+    <div id="offering_content" class="mat-elevation-z8 app-view">
+      <router-outlet></router-outlet>
+    </div>
+    <mat-toolbar class="footer">
+      <img alt="CA" src="assets/ca-logo-grey.svg" class="logo">
+      <h5 class="title">{{title}}</h5>
+      <div class="space"></div>
+      {{copyright}}
+      <!-- <a href="javascript:;" class="link">Privacy</a>
+      <a href="javascript:;" class="link">Legal</a> -->
+    </mat-toolbar>
+  </mat-sidenav-content>
+  <mat-sidenav #sidenavHelp mode="over" position="end">
+    <h3>
+      <a href="{{slideOutHelp.url}}" target="_blank" style="outline: none">
+        {{slideOutHelp.name}}
+        <button mat-icon-button>
+          <mat-icon>open_in_new_window</mat-icon>
+        </button>
+      </a>
+    </h3>
+    <div [innerHTML]="slideOutHelp.content"></div>
+  </mat-sidenav>
+</mat-sidenav-container>

@@ -1,0 +1,33 @@
+<mat-toolbar class="search">
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="filterValue" (keyup)="filter()">
+    <span matPrefix aria-label="Search">
+      <mat-icon class="search-icon">search</mat-icon>
+    </span>
+    <span matSuffix aria-label="Clear">
+      <mat-icon *ngIf="filterValue && filterValue !== ''" (click)="clear()">close</mat-icon>
+    </span>
+  </mat-form-field>
+  <div style="flex: 1 1 auto;"></div>
+  <button id="define-datacenter" class="primary" (click)="add()">
+    <mat-icon class="pre">add_box</mat-icon>
+    Add a Datacenter</button>
+</mat-toolbar>
+<mat-table #table [dataSource]="datacenters" matSort [ngStyle]="{'max-height': 'calc(100vh - 500px)'}">
+  <ng-container matColumnDef="Select">
+    <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+    <mat-cell *matCellDef="let datacenter; let i = index;">
+      <mat-radio-button id="datacenter-{{i}}" [checked]="datacenter.Select" (change)="changed($event, datacenter)" disableRipple></mat-radio-button>
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let datacenter">{{datacenter.Name}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Description">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+    <mat-cell *matCellDef="let datacenter">{{datacenter.Description}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columns;" [@state]="row.state" (@state.done)="handleState(row)"></mat-row>
+</mat-table>

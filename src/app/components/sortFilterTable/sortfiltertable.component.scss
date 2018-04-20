@@ -1,0 +1,13 @@
+@import '~themes.scss';
+
+::ng-deep app-sort-filter-table .hidden .mat-tab-header {
+  display: none !important;
+}
+
+::ng-deep app-sort-filter-table .tabs .mat-tab-header {
+  display: flex !important; // original
+}
+
+::ng-deep app-sort-filter-table .tabs .mat-tab-label-active {
+  background-color: mat-color($primary, 100);
+}

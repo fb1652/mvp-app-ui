@@ -1,0 +1,27 @@
+<mat-toolbar class="search">
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="filterValue" (keyup)="filter()">
+    <span matPrefix aria-label="Search">
+      <mat-icon class="search-icon">search</mat-icon>
+    </span>
+    <span matSuffix aria-label="Clear">
+      <mat-icon *ngIf="filterValue && filterValue !== ''" (click)="clear()">close</mat-icon>
+    </span>
+  </mat-form-field>
+</mat-toolbar>
+<mat-table [dataSource]="table" matSort *ngIf="!clickableRows">
+  <ng-container *ngFor="let col of columnDefs" matColumnDef={{col.id}}>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{col.display}}</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{formatArrayData(element[col.property])}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+</mat-table>
+<mat-table [dataSource]="table" matSort *ngIf="clickableRows">
+  <ng-container *ngFor="let col of columnDefs" matColumnDef={{col.id}}>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{col.display}}</mat-header-cell>
+    <mat-cell *matCellDef="let element"><a href="javascript:;">{{formatArrayData(element[col.property])}}</a></mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnsToDisplay; let i = index;" (click)="selected(i, row)"></mat-row>
+</mat-table>

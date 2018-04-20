@@ -1,0 +1,24 @@
+# Workspace folder path on the Code Insight scan server.
+# Create and Configure your workspace: https://cawiki.ca.com/x/d0YOLg
+workspace: /workspace/scancode/MRI/MRI-APP-UI/
+
+ 
+# Host name of the Code Insight scan server for your Code Insight workspace.
+# Please refer to https://cawiki.ca.com/x/AS30LQ for the host name of your scan server.
+#Scanner1
+codeinsightscanserver: usilasp0105.ca.com
+
+# Local top level folder paths of the source files and binaries to be uploaded and scanned.
+sources:
+ - /
+
+
+ 
+# Code Insight project id. Finding your project ID:https://cawiki.ca.com/x/yqJGLg
+codeinsightproject: 2073
+
+# Folder/file patterns to exclude from the upload.
+excludepatterns:
+ - '**/node_modules/**'
+
+# Note: workspace, codeinsightscanserver, sources, codeinsightproject are mandatory 

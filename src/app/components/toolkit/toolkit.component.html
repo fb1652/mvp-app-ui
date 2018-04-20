@@ -1,0 +1,58 @@
+<div style="padding:32px">
+  <h2 id="toolkit-title" align="left">Download and Install the MRI Toolkit</h2>
+  <a href="assets/CA-MRI-Toolkit.zip" download>
+    <button class="primary jumbo download-button">
+      <mat-icon class="pre">file_download</mat-icon>
+      Download MRI Toolkit (zip)
+      <mat-icon class="post fa fa-sort-down"></mat-icon>
+    </button>
+  </a>
+  <p class="after-you-have-download">
+    After you have downloaded the MRI Toolkit file, follow these steps to install it:
+  </p>
+  <div>
+    <mat-vertical-stepper [linear]="true" #stepper="matVerticalStepper">
+      <mat-step label="On your PC">
+        Extract the following files from the CA-MRI-Toolkit.zip file:
+        <ul>
+          <li>CA.MRI.LOAD.xmi - The CA MRI LOAD library in xmit format</li>
+          <li>CA.MRI.CNTL.xmi - The CA MRI CNTL library in xmit format</li>
+          <li>CA MRI Toolkit pdf - The documentation for the CA MRI Toolkit</li>
+        </ul>
+      </mat-step>
+      <mat-step label="On your Mainframe">
+        Upload and install the CA MRI Toolkit xmit files on DASD that is accessible to the LPARs where you intend to run the MRI scans.
+        <br><br>
+        Note: If you have previously installed the CA MRI Toolkit, create a backup of your existing CA.MRI.LOAD and CA.MRI.CNTL load libraries.
+        <br><br>
+        A. From your PC, use FTP to upload the CA.MRI.LOAD.xmi and CA.MRI.CNTL.xmi files to your LPAR.
+        <br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;ftp xxx.xxx.com
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;bin
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;quote site CYLINDERS PRIMARY=5 FILETYPE=SEQ RECFM=FB LRECL=80
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;put CA.MRI.LOAD.xmi
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;quote site CYLINDERS PRIMARY=1 FILETYPE=SEQ RECFM=FB LRECL=80
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;put CA.MRI.CNTL.xmi
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;quit
+        <br><br>
+        B. On your LPAR, receive the uploaded xmit files. Log onto TSO on an LPAR that has access to the uploaded xmit files.
+        <br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;1. Start ISPF, and navigate to ISPF Option 6 (the ISPF Command Shell)
+        <br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;2. On the command prompt enter:
+        <br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECEIVE INDA(&#39;<i>your uploaded CA MRI LOAD xmit dataset name</i>&#39;)
+        <br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;then enter:
+        <br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECEIVE INDA(&#39;<i>your uploaded CA MRI CNTL xmit dataset name</i>&#39;)
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<mat-tab-group class="tabs">
+  <mat-tab *ngFor="let data of dataArray">
+    <ng-template mat-tab-label>{{data.Data.reports.sysplex[0].Name}}</ng-template>
+    <app-hardware-view [data]="data"></app-hardware-view>
+  </mat-tab>
+</mat-tab-group>

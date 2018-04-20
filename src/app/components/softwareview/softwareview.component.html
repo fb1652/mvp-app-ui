@@ -1,0 +1,90 @@
+<h1 id="software-title" align="center">Software</h1>
+<div>
+  <mat-tab-group class="hidden" [(selectedIndex)]="tabIndex">
+    <mat-tab>
+      <mat-grid-list cols="3" rowHeight="30px" align="center">
+        <mat-grid-tile [rowspan]="7" [colspan]="1" rowHeight="fit">
+          <img src="assets/systemsoftware.png" alt="Mainframe" aria-hidden="true" style="height:150px">
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="7" [colspan]="1" rowHeight="fit" class="justify-left">
+          <mat-table [dataSource]="os" class="nolines">
+            <ng-container matColumnDef="Name">
+              <mat-header-cell *matHeaderCellDef>Operating Systems</mat-header-cell>
+              <mat-cell *matCellDef="let system">{{system.Name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Value">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let system">{{system.Value}}</mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+          </mat-table>
+        </mat-grid-tile>
+        <mat-grid-tile [rowspan]="7" [colspan]="1" rowHeight="fit" class="justify-left">
+          <mat-table [dataSource]="subsystems" class="nolines">
+            <ng-container matColumnDef="Name">
+              <mat-header-cell *matHeaderCellDef>Subsystems</mat-header-cell>
+              <mat-cell *matCellDef="let subsystem">{{subsystem.Name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Value">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let subsystem">{{subsystem.Value}}</mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+          </mat-table>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-tab-group class="tabs">
+        <mat-tab label="Operating Systems">
+          <app-sort-filter-table [table]="ostable" [columnDefs]="osTableColumnsDef" [columnsToDisplay]="osToDisplay"></app-sort-filter-table>
+        </mat-tab>
+        <mat-tab label="Subsystems">
+          <app-sort-filter-table [table]="subsystemstable" [columnDefs]="subsystemstableColumnsDef" [columnsToDisplay]="subsystemsToDisplay"></app-sort-filter-table>
+        </mat-tab>
+        <mat-tab label="Registered Products">
+          <app-sort-filter-table [table]="registeredproduct" [columnDefs]="registeredproductColumnDefs" [columnsToDisplay]="registeredToDisplay" [clickableRows]="true" (rowClick)="selectedRegisteredProduct($event)"></app-sort-filter-table>
+        </mat-tab>
+        <mat-tab label="Vendor Software">
+          <app-sort-filter-table [table]="vendors" [columnDefs]="vendorsColumnDefs" [columnsToDisplay]="vendorsToDisplay" [clickableRows]="true"></app-sort-filter-table>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-tab>
+    <mat-tab>
+      <a href="javascript:;" (click)="tabIndex=0">&lt; Back</a>
+      <br>
+      <app-sort-filter-table *ngIf="tabIndex === 1 && products && products.length > 0"
+        [table]="products[currentProduct]"
+        [columnDefs]="productsColumnDefs"
+        [columnsToDisplay]="productsToDisplay"
+        [clickableRows]="false"></app-sort-filter-table>
+    </mat-tab>
+    <mat-tab>
+      <a href="javascript:;" (click)="tabIndex=0">&lt; Back</a>
+      <br>
+      <h3>Registered Product Features</h3>
+      <h5>LPAR&nbsp; &nbsp; &nbsp;Vendor&nbsp; &nbsp; &nbsp;Product&nbsp; &nbsp; &nbsp;Version&nbsp; &nbsp; &nbsp;Software ID</h5>
+      <hr>
+      <h6>{{currentRow.lpar}}&nbsp; &nbsp; &nbsp;{{currentRow.vendor}}&nbsp; &nbsp; &nbsp;{{currentRow.product}}&nbsp; &nbsp; &nbsp;{{currentRow.version}}&nbsp; &nbsp; &nbsp;{{currentRow.softwareid}}</h6>
+      <mat-toolbar class="search">
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="filterValue" (keyup)="filter()">
+    <span matPrefix aria-label="Search">
+      <mat-icon class="search-icon">search</mat-icon>
+    </span>
+    <span matSuffix aria-label="Clear">
+      <mat-icon *ngIf="filterValue && filterValue !== ''" (click)="clear()">close</mat-icon>
+    </span>
+        </mat-form-field>
+      </mat-toolbar>
+      <mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="feature">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Features </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-tab>
+  </mat-tab-group>
+</div>

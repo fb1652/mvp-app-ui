@@ -1,0 +1,72 @@
+<section *ngIf="selected !== undefined">
+  <section>
+    <mat-grid-list cols="3" rowHeight="40px">
+      <mat-grid-tile>Owner</mat-grid-tile>
+      <mat-grid-tile>Check</mat-grid-tile>
+      <mat-grid-tile>Severity</mat-grid-tile>
+      <mat-grid-tile>{{selected.owner}}</mat-grid-tile>
+      <mat-grid-tile>{{selected.check}}</mat-grid-tile>
+      <mat-grid-tile>{{selected.severity}}</mat-grid-tile>
+    </mat-grid-list>
+  </section>
+  <mat-divider></mat-divider>
+  <section>
+    <mat-grid-list cols="4" rowHeight="40px">
+      <mat-grid-tile>Sysplex:</mat-grid-tile>
+      <mat-grid-tile>{{selected.parsed.sysplex}}</mat-grid-tile>
+      <mat-grid-tile>System:</mat-grid-tile>
+      <mat-grid-tile>{{selected.parsed.lpar}}</mat-grid-tile>
+      <mat-grid-tile>Start Date:</mat-grid-tile>
+      <mat-grid-tile>{{selected.startDate}}</mat-grid-tile>
+      <mat-grid-tile>Start Time:</mat-grid-tile>
+      <mat-grid-tile>{{selected.startTime}}</mat-grid-tile>
+      <mat-grid-tile>End Date:</mat-grid-tile>
+      <mat-grid-tile>{{selected.endDate}}</mat-grid-tile>
+      <mat-grid-tile>End Time:</mat-grid-tile>
+      <mat-grid-tile>{{selected.endTime}}</mat-grid-tile>
+    </mat-grid-list>
+  </section>
+  <section *ngIf="selected.parsed.prefix.length > 0">
+    <p *ngFor="let item of selected.parsed.prefix">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>Exception</h4>
+      <p *ngFor="let item of selected.parsed.exception">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>Explanation</h4>
+      <p *ngFor="let item of selected.parsed.explanation">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>System Action</h4>
+      <p *ngFor="let item of selected.parsed.systemAction">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>Operator Response</h4>
+      <p *ngFor="let item of selected.parsed.operatorResponse">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>System programmer Response</h4>
+      <p *ngFor="let item of selected.parsed.systemProgrammerResponse">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>Problem Determination</h4>
+      <p *ngFor="let item of selected.parsed.problemDetermination">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>Source</h4>
+      <p *ngFor="let item of selected.parsed.source">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>Reference Documentation</h4>
+      <p *ngFor="let item of selected.parsed.referenceDocumentation">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>Automation</h4>
+      <p *ngFor="let item of selected.parsed.automation">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+  <section>
+    <h4>Check Reason</h4>
+      <p *ngFor="let item of selected.parsed.checkReason">{{item.length !== 0 ? item : '&nbsp;'}}</p>
+  </section>
+</section>

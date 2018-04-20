@@ -1,0 +1,383 @@
+@import '~@angular/material/theming';
+
+// config typography
+$typography: mat-typography-config(
+  $font-family: '"Open Sans"'
+);
+
+@include mat-core($typography);
+
+$color-red: (
+  50: hsl(0, 81%, 94%),
+  100: hsl(0, 86%, 86%),
+  200: hsl(0, 85%, 78%),
+  300: hsl(0, 83%, 70%),
+  400: hsl(0, 80%, 61%),
+  500: hsl(0, 71%, 51%),
+  600: hsl(0, 78%, 44%),
+  700: hsl(0, 85%, 37%),
+  800: hsl(0, 89%, 31%),
+  900: hsl(0, 91%, 26%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-magenta: (
+  50: hsl(341, 64%, 91%),
+  100: hsl(341, 79%, 85%),
+  200: hsl(341, 83%, 76%),
+  300: hsl(341, 82%, 67%),
+  400: hsl(341, 77%, 57%),
+  500: hsl(340, 70%, 50%),
+  600: hsl(340, 82%, 43%),
+  700: hsl(340, 88%, 37%),
+  800: hsl(340, 91%, 33%),
+  900: hsl(340, 92%, 29%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-purple: (
+  50: hsl(274, 74%, 93%),
+  100: hsl(272, 84%, 88%),
+  200: hsl(273, 89%, 82%),
+  300: hsl(273, 87%, 75%),
+  400: hsl(273, 79%, 66%),
+  500: hsl(273, 65%, 56%),
+  600: hsl(273, 56%, 48%),
+  700: hsl(273, 59%, 40%),
+  800: hsl(273, 60%, 35%),
+  900: hsl(273, 59%, 30%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-indigo: (
+  50: hsl(240, 70%, 94%),
+  100: hsl(240, 83%, 89%),
+  200: hsl(240, 82%, 82%),
+  300: hsl(240, 80%, 75%),
+  400: hsl(240, 76%, 67%),
+  500: hsl(240, 70%, 59%),
+  600: hsl(240, 64%, 52%),
+  700: hsl(241, 64%, 45%),
+  800: hsl(242, 67%, 39%),
+  900: hsl(242, 66%, 34%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-blue: (
+  50: hsl(218, 79%, 95%),
+  100: hsl(214, 91%, 87%),
+  200: hsl(216, 90%, 80%),
+  300: hsl(216, 83%, 70%),
+  400: hsl(216, 77%, 60%),
+  500: hsl(217, 69%, 52%),
+  600: hsl(217, 72%, 44%),
+  700: hsl(217, 77%, 37%),
+  800: hsl(218, 79%, 32%),
+  900: hsl(217, 79%, 27%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-sky: (
+  50: hsl(200, 82%, 94%),
+  100: hsl(203, 91%, 87%),
+  200: hsl(203, 94%, 81%),
+  300: hsl(203, 89%, 72%),
+  400: hsl(203, 84%, 63%),
+  500: hsl(202, 74%, 53%),
+  600: hsl(202, 77%, 45%),
+  700: hsl(202, 84%, 37%),
+  800: hsl(202, 87%, 30%),
+  900: hsl(202, 87%, 25%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-teal: (
+  50: hsl(171, 67%, 94%),
+  100: hsl(171, 79%, 85%),
+  200: hsl(169, 77%, 75%),
+  300: hsl(169, 73%, 64%),
+  400: hsl(170, 63%, 51%),
+  500: hsl(171, 71%, 43%),
+  600: hsl(172, 77%, 36%),
+  700: hsl(172, 81%, 30%),
+  800: hsl(172, 81%, 25%),
+  900: hsl(173, 82%, 21%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-green: (
+  50: hsl(150, 77%, 95%),
+  100: hsl(149, 85%, 87%),
+  200: hsl(149, 83%, 77%),
+  300: hsl(149, 77%, 66%),
+  400: hsl(150, 68%, 55%),
+  500: hsl(150, 72%, 44%),
+  600: hsl(150, 82%, 35%),
+  700: hsl(150, 87%, 30%),
+  800: hsl(150, 90%, 25%),
+  900: hsl(150, 92%, 20%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-lime: (
+  50: hsl(87, 67%, 94%),
+  100: hsl(87, 81%, 90%),
+  200: hsl(88, 83%, 81%),
+  300: hsl(90, 80%, 71%),
+  400: hsl(90, 75%, 61%),
+  500: hsl(90, 66%, 51%),
+  600: hsl(90, 77%, 42%),
+  700: hsl(90, 85%, 35%),
+  800: hsl(90, 89%, 29%),
+  900: hsl(90, 89%, 24%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-yellow: (
+  50: hsl(39, 84%, 93%),
+  100: hsl(39, 92%, 85%),
+  200: hsl(39, 92%, 77%),
+  300: hsl(40, 90%, 69%),
+  400: hsl(39, 85%, 60%),
+  500: hsl(40, 78%, 51%),
+  600: hsl(41, 85%, 44%),
+  700: hsl(41, 92%, 39%),
+  800: hsl(41, 94%, 34%),
+  900: hsl(41, 95%, 29%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-orange: (
+  50: hsl(16, 82%, 94%),
+  100: hsl(16, 91%, 87%),
+  200: hsl(16, 90%, 80%),
+  300: hsl(16, 86%, 71%),
+  400: hsl(16, 82%, 61%),
+  500: hsl(16, 74%, 52%),
+  600: hsl(16, 82%, 45%),
+  700: hsl(16, 91%, 39%),
+  800: hsl(16, 92%, 34%),
+  900: hsl(16, 92%, 30%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-slate: (
+  50: hsl(200, 43%, 95%),
+  100: hsl(201, 42%, 88%),
+  200: hsl(200, 41%, 78%),
+  300: hsl(200, 35%, 67%),
+  400: hsl(201, 31%, 57%),
+  500: hsl(200, 26%, 47%),
+  600: hsl(200, 26%, 38%),
+  700: hsl(199, 26%, 31%),
+  800: hsl(200, 26%, 25%),
+  900: hsl(200, 27%, 20%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-dusk: (
+  50: hsl(227, 39%, 95%),
+  100: hsl(229, 37%, 89%),
+  200: hsl(227, 33%, 81%),
+  300: hsl(226, 27%, 68%),
+  400: hsl(228, 21%, 56%),
+  500: hsl(227, 21%, 44%),
+  600: hsl(227, 23%, 35%),
+  700: hsl(226, 24%, 28%),
+  800: hsl(227, 23%, 23%),
+  900: hsl(227, 24%, 19%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-grey: (
+  50: hsl(216, 33%, 97%),
+  100: hsl(216, 33%, 94%),
+  200: hsl(218, 31%, 90%),
+  300: hsl(218, 28%, 83%),
+  400: hsl(217, 22%, 74%),
+  500: hsl(217, 15%, 61%),
+  600: hsl(217, 10%, 49%),
+  700: hsl(218, 11%, 39%),
+  800: hsl(215, 11%, 30%),
+  900: hsl(217, 11%, 23%),
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity
+  )
+) !default;
+
+$color-black: hsl(223, 11%, 13%) !default;
+
+// color palettes
+$min-red: mat-palette($color-red) !default;
+$min-magenta: mat-palette($color-magenta) !default;
+$min-purple: mat-palette($color-purple) !default;
+$min-indigo: mat-palette($color-indigo) !default;
+$min-blue: mat-palette($color-blue) !default;
+$min-sky: mat-palette($color-sky) !default;
+$min-teal: mat-palette($color-teal) !default;
+$min-green: mat-palette($color-green) !default;
+$min-lime: mat-palette($color-lime) !default;
+$min-yellow: mat-palette($color-yellow) !default;
+$min-orange: mat-palette($color-orange) !default;
+$min-slate: mat-palette($color-slate) !default;
+$min-dusk: mat-palette($color-dusk) !default;
+$min-grey: mat-palette($color-grey) !default;
+// $min-black: mat-palette($color-black) !default;
+
+// set the theme
+$primary: $min-blue;
+$accent: $min-blue;
+$theme: mat-light-theme($primary, $accent);
+@include angular-material-theme($theme);

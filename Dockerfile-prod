@@ -1,0 +1,22 @@
+# https://github.com/avatsaev/angular4-docker-example
+
+FROM node:9.10.1 as builder
+RUN groupadd -r cagroup && useradd --no-log-init -r -g cagroup -d /home/causer -m causer
+RUN mkdir -p /opt/mri-app-ui && chown causer /opt/mri-app-ui && chgrp cagroup /opt/mri-app-ui
+USER causer
+WORKDIR /opt/mri-app-ui
+COPY .npmrc package.json ./
+RUN npm i
+COPY . .
+RUN $(npm bin)/ng build
+# RUN $(npm bin)/ng build --prod
+
+FROM nginx:1.13.6
+RUN groupadd -r cagroup && useradd --no-log-init -r -g cagroup -d /home/causer -m causer
+COPY default.conf /etc/nginx/conf.d/
+RUN cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bkup && sed -e '/^user.*/ {d}' /etc/nginx/nginx.conf.bkup > /etc/nginx/nginx.conf && \
+  chmod go+w /var/run /var/cache/nginx
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /opt/mri-app-ui/dist /usr/share/nginx/html
+USER causer
+CMD ["nginx", "-g", "daemon off;"]

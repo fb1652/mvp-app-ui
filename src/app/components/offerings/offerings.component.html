@@ -1,0 +1,15 @@
+<div *ngFor="let category of categories" class="category">
+  <h2 class="category-title">{{category}} Offerings</h2>
+  <div class="category-row">
+    &nbsp;
+    <mat-card id="{{offering.Name}}" *ngFor="let offering of offerings[category]" (click)="select(offering)" class="offering mat-elevation-z6">
+      <mat-card-title-group>
+        <h3 mat-card-title>{{offering.Name}}</h3>
+        <mat-card-subtitle>{{offering.Category}}</mat-card-subtitle>
+      </mat-card-title-group>
+      <p class="long" mat-card-content>{{offering.Description}}</p>
+      <img class="offering-img" src="{{offering.ImageUrl}}" alt="img" aria-hidden="true">
+    </mat-card>
+    &nbsp;
+  </div>
+</div>

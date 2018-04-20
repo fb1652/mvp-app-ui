@@ -1,0 +1,15 @@
+<form (ngSubmit)="add()">
+  <h4 mat-dialog-title>Add a User</h4>
+  <mat-dialog-content>
+      <input placeholder="Email" aria-label="Email" pattern="^[^ ]+ - \w* \w*$"
+      [matAutocomplete]="auto" [formControl]="autocompleteForm" (click)="autocompleteForm.setValue('')">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let user of autocompleteUsers | async" value="{{user.Email}} - {{user.First}} {{user.Last}}">
+          <span>{{user.Email}} - {{user.First}} {{user.Last}}</span>
+        </mat-option>
+      </mat-autocomplete>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" style="float: right;" [disabled]="autocompleteForm.value.length && autocompleteForm.invalid">Add</button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,18 @@
+@import '~themes.scss';
+
+.banner {
+  background-color: mat-color($primary, 50);
+  height: 180px;
+  padding: 0px 100px;
+}
+
+p.banner-text {
+  color: black;
+  font-size: 24px;
+  font-weight: bolder;
+  padding: 0px 50px;
+}
+
+.banner-icon {
+  height: 120px;
+}

@@ -1,0 +1,43 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<mat-tab-group class="hidden" [selectedIndex]="tabGroupIndex">
+  <mat-tab>
+    <mat-tab-group class="tabs">
+      <mat-tab *ngFor="let data of dataArray">
+        <ng-template mat-tab-label>{{data.Data.reports.lpar}}</ng-template>
+        <h1 id="healthcheck-title" align="center">Health Checks</h1>
+        <section>
+          <mat-grid-list cols="2" rowHeight="200px" align="center">
+            <mat-grid-tile [colspan]="1" rowHeight="fit" class="justify-left">
+              <div style="height:50px;"></div>
+              <img src="assets/healthcheck-circle.png" alt="Mainframe" aria-hidden="true" style="height: 150px">
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" rowHeight="fit" class="justify-left">
+              <h1>{{data.Data.reports.summary.totalExceptions}} Exceptions</h1>
+              <div class="high">
+                <h2>High</h2>
+                <h2>{{data.Data.reports.summary.high}}</h2>
+              </div>
+              <div class="medium">
+                <h2>Medium</h2>
+                <h2>{{data.Data.reports.summary.medium}}</h2>
+              </div>
+              <div class="low">
+                <h2>Low</h2>
+                <h2>{{data.Data.reports.summary.low}}</h2>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <br/>
+        </section>
+        <section>
+          <app-healthchecktable [table]="data.Data.reports.exceptions"></app-healthchecktable>
+        </section>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-tab>
+  <mat-tab>
+    <a href="javascript:;" (click)="tabGroupIndex=0">&lt; Back</a>
+    <app-healthcheck-exception></app-healthcheck-exception>
+    <br/>
+  </mat-tab>
+</mat-tab-group>

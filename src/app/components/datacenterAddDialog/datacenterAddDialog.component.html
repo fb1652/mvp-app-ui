@@ -1,0 +1,17 @@
+<form (ngSubmit)="save()">
+  <div style="height: 72px">  <h4 id="action-datacenter">{{action}} a Datacenter</h4></div>
+  <mat-dialog-content>
+    <label for="datacenter-name" class="label-space">Name</label>
+    <input style="width:320px;" id="datacenter-name" [(ngModel)]="datacenter.Name" placeholder="Name" type="text" [formControl]= "nameValid" name="name" required>
+      <mat-error *ngIf="nameValid.invalid && !nameValid.$pristine">{{getNameValidMessage()}}</mat-error>
+  </mat-dialog-content>
+  <mat-dialog-content>
+  <label for="datacenter-description" class="label-space">Description</label>
+    <textarea rows="5" cols="50" id="datacenter-description" [(ngModel)]="datacenter.Description" placeholder="Description" type="text" name="description"></textarea>
+  </mat-dialog-content>
+
+  <mat-dialog-actions style="float: right;">
+    <button mat-raised-button style="float: right; color: #3071d9;" (click)="goBactToDataCenters()" href="javascript:;">Cancel</button>
+    <button id="submit-datacenter" [type]="submit" mat-raised-button color="primary" style="float: right;" [disabled]="!(datacenter && datacenter.Name)">{{action}}</button>
+  </mat-dialog-actions>
+</form>

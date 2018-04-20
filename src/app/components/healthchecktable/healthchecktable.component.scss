@@ -1,0 +1,33 @@
+@import '~themes.scss';
+
+.high {
+  float: left;
+  height: auto;
+  width: 3%;
+  padding-top: 3%;
+  border-radius: 50%;
+  background-color: mat-color($color-red, 200);
+}
+
+.medium {
+  float: left;
+  height: auto;
+  width: 3%;
+  padding-top: 3%;
+  border-radius: 50%;
+  background-color: mat-color($color-yellow, 200);
+}
+
+.low {
+  float: left;
+  height: auto;
+  width: 3%;
+  padding-top: 3%;
+  border-radius: 50%;
+  background-color: mat-color($color-blue, 200);
+}
+
+.mat-table {
+  max-height: 350px;
+  overflow: auto;
+}

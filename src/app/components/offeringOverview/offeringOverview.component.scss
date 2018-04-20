@@ -1,0 +1,83 @@
+@import '~themes.scss';
+
+app-offering-overview {
+  min-height: calc(100vh - 374px); // header + banner + footer
+}
+
+.back {
+  margin-bottom: 12px;
+}
+
+.overview {
+  display: flex;
+  margin: 32px;
+}
+
+.overview-buffer {
+  width: 100%;
+  max-width: 312px; // 280 + 32 (padding)
+}
+
+.content {
+  border-right: 1px solid black;
+  padding-right: 32px;
+  width: 100%;
+}
+
+hr {
+  margin: 32px 0;
+}
+
+ul {
+  list-style-type: disc;
+  margin-right: 32px;
+}
+
+p {
+  white-space: pre-line;
+}
+
+.banner {
+  background-color: mat-color($min-grey, 50);
+  height: 142px;
+  padding: 32px;
+}
+
+.banner-image {
+  height: 130px;
+  margin-left: -30px;
+}
+
+.sidebar {
+  padding-left: 32px;
+  max-width: 240px;
+  min-width: 240px;
+  width: 100%;
+}
+
+.overview-steps {
+  display: flex;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 8px 0;
+  & h4 {
+    padding-right: 18px;
+  }
+}
+
+.step-icon {
+  background-color: mat-color($primary);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  flex: none;
+  margin-right: 8px;
+  height: 24px;
+  width: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  padding: 0 32px;
+}

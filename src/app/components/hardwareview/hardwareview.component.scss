@@ -1,0 +1,79 @@
+@import '~themes.scss';
+
+.nolines > ::ng-deep mat-header-row {
+  border: 0 none;
+  text-align: left;
+}
+
+.nolines > ::ng-deep mat-row {
+  border: 0 none;
+  text-align: left;
+}
+
+//.header-dark-grey {
+//  color: #ffffff;
+//  background-color: #adabab;
+//}
+
+.header-search {
+  background-color: #adabab;
+  border: 1px solid black;
+  border-bottom: none;
+  color: #ffffff;
+  height: 50px;
+  margin-top: 50px;
+  padding: 0 24px;
+}
+
+.header-dark-grey {
+  background-color: #adabab;
+  border-top: none;
+  color: #ffffff;
+}
+
+.justify-left > ::ng-deep figure {
+  display: block;
+}
+
+::ng-deep app-hardware-view .hidden .mat-tab-header {
+  display: none !important;
+}
+
+::ng-deep app-hardware-view .tabs .mat-tab-header {
+  display: flex !important; // original
+}
+
+::ng-deep app-hardware-view .tabs .mat-tab-label-active {
+  background-color: mat-color($primary, 100);
+}
+
+mat-row {
+  border-bottom-color: black;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: black;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: black;
+}
+
+mat-header-row {
+  border-bottom-color: black;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-top-color: black;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: black;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: black;
+}
+
+.justify-left > ::ng-deep figure {
+  display: block;
+}

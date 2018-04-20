@@ -1,0 +1,40 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div class="stepper">
+  <mat-horizontal-stepper class="offering-steps" #stepper="matHorizontalStepper" linear>
+    <mat-step [stepControl]="steps[0]" label="Define Datacenter">
+      <h3 id="step-1-title" style="margin-bottom: 32px !important;">1. Choose a Datacenter</h3>
+      <app-datacenters-list (select)="steps[stepper.selectedIndex].setValue({datacenter: $event})"></app-datacenters-list>
+    </mat-step>
+    <mat-step [stepControl]="steps[1]" label="Generate Data">
+      <h3 id="step-2-title">2. Run JCL on your Mainframe</h3>
+      <p class="well">
+        If you haven’t yet installed the MRI Toolkit, please 
+        <a href="/Toolkit" routerLink="/Toolkit">download the files</a> 
+        and upload to your mainframe.</p>
+      <div class="run-jcl" [innerHTML]="runJcl"></div>
+    </mat-step>
+    <mat-step [stepControl]="steps[2]" label="Upload Data">
+      <h3 id="step-3-title">3. Upload Data</h3>
+      <p>Now that you have run the JCL jobs on your LPAR to generate data files,
+        FTP this file to your computer and upload here by browsing and selecting
+        from your computer or dragging and dropping into the container.</p>
+      <app-scan [writable]="true" (change)="handleAttachments($event)"></app-scan>
+    </mat-step>
+    <mat-step [stepControl]="steps[3]" label="Confirm Submission">
+      <h3 id="step-4-title" style="margin-bottom: 18px !important;">4. Scan Data Successfully Submitted</h3>
+      <p>Your scan data has been received and your report is being generated.</p>
+      <p>Scan Details:</p>
+      <p>Offering: {{offering.Name}}</p>
+      <p>Datacenter: {{datacenter.Name}}</p>
+      <p>Date/Time: {{submission.datetime}}</p>
+      <p>Confirmation Code: {{submission.confirmation}}</p>
+      <!-- <p>Data File:  filename.csv</p> -->
+      <button id="reports" class="jumbo primary" routerLink="/Reports" style="margin: 2px;">Go To Reports</button>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+<div class="stepper-nav" *ngIf="stepper.selectedIndex!==3"> <!-- last step -->
+  <button id="previous-step" type="button" (click)="stepper.previous()" [disabled]="stepper.selectedIndex===0">Previous</button>
+  <div style="flex: 1 1 auto;"></div>
+  <button id="next-step" type="button" (click)="stepper.next()" class="primary" [disabled]="steps[stepper.selectedIndex].invalid">Next</button>
+</div>

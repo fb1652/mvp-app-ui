@@ -1,0 +1,137 @@
+@import '~themes.scss';
+
+app-base {
+  display: flex;
+  flex-flow: column;
+}
+
+.app-content {
+  min-height: calc(100vh - 64px);
+  background-color: mat-color($min-grey, 50);
+}
+
+.app-view {
+  height: 100%;
+  margin: -48px 48px 0px 80px;
+  min-height: calc(100vh - 144px);
+  background-color: white;
+}
+
+.header {
+  height: 80px;
+  padding: 0 24px 0 0;
+  & .help {
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    & .mat-icon {
+      @extend .help;
+      position: relative;
+      top: -5px;
+    }
+  }
+  & .logo {
+    height: 60px;
+    margin: 0 32px;
+    width: 60px;
+    vertical-align: middle;
+  }
+  & .menu {
+    box-sizing: border-box;
+    height: 80px;
+    width: 80px;
+    padding: 20px;
+    & button {
+      border: none;
+      box-shadow: none;
+      outline: none;
+      padding: 0;
+    }
+  }
+  & .space {
+    flex: 1 1 auto;
+  }
+  & .title {
+    font-weight: 900;
+    font-size: 24px;
+  }
+  & .username {
+    background-color: mat-color($primary);
+    border: none;
+    color: white;
+    margin-left: 32px;
+    padding: 0;
+    &:focus { box-shadow: none; }
+    & .mat-icon {
+      margin: 0;
+      &.fa-sort-down {
+        font-size: 18px;
+        height: 18px;
+        position: relative;
+        top: -5px;
+        left: -2px;
+        width: 12px;
+      }
+    }
+  }
+}
+
+.sub-header {
+  height: 48px;
+}
+
+mat-sidenav {
+  height: 100vh;
+  min-width: 400px;
+  padding: 20px;
+  width: 40vw;
+}
+
+.sidemenu {
+  position: fixed;
+  background-color: white;
+  min-width: 240px;
+  width: 240px;
+}
+
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  position: absolute;
+  & button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: mat-color($min-grey, 700);
+    margin: 4px 20px;
+    padding: 0;
+    &:focus { color: mat-color($primary); }
+    &:hover { color: mat-color($primary); }
+    &.active { color: mat-color($primary); }
+  }
+}
+
+.footer {
+  background-color: unset;
+  color: mat-color($min-grey, 900);
+  font-size: 14px;
+  padding: 0 80px 0 112px;
+  position: relative;
+  & .link {
+    margin-left: 32px;
+  }
+  & .logo {
+    height: 40px;
+    vertical-align: middle;
+  }
+  & .space {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+  & .title {
+    margin: 0 0 0 24px !important;
+  }
+}

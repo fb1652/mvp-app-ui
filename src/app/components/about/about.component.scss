@@ -1,0 +1,36 @@
+.about {
+  display: flex;
+  min-height: calc(100vh - 374px); // header + banner + footer
+}
+
+.content {
+  border-right: solid 1px black;
+  margin: 32px 0;
+  padding: 0 32px;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+}
+
+.sidebar {
+  padding: 0 32px;
+  height: calc(100% - 64px); // height - padding
+  margin: 32px 0;
+  max-width: 240px;
+  width: 100%;
+}
+
+hr {
+  margin-bottom: 32px;
+}
+
+ul {
+  list-style-type: disc;
+  margin-right: 32px;
+}
+
+p {
+  white-space: pre-line;
+}

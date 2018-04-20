@@ -1,0 +1,83 @@
+@import '~themes.scss';
+
+.file-errors {
+  background-color: mat-color($min-red, 200);
+  border: 1px solid mat-color($min-red);
+  border-radius: 10px;
+  box-sizing: border-box;
+  max-height: 125px;
+  overflow: auto;
+  padding: 0 8px;
+  & p {margin-bottom: 12px;}
+  & ul {margin: 12px 0;}
+  & span {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+    & .mat-icon {cursor: pointer;}
+  }
+}
+
+::ng-deep p-fileupload .ui-fileupload .ui-fileupload-buttonbar {
+  background: white;
+  border: 0 none;
+  padding: 0;
+  margin: 32px 0;
+}
+
+::ng-deep p-fileupload .ui-fileupload .ui-fileupload-buttonbar .ui-fileupload-choose {
+  @extend .mat-typography; // for fonts
+  background-color: mat-color($primary);
+  border: 1px solid mat-color($primary);
+  border-radius: 5px !important;
+  color: white;
+  cursor: pointer;
+  font-size: 0.875rem;
+  height: 40px;
+  padding: 0 16px;
+  width: fit-content;
+  &:focus {
+    border: none;
+    box-shadow: 0 0 0px 1px white, 0 0 0px 2px mat-color($primary);
+    outline: unset;
+  }
+  &:hover {
+    background-color: mat-color($primary, 300);
+    border: 1px solid mat-color($primary, 300);
+  }
+  &:active {
+    background-color: mat-color($primary, 700);
+    border: 1px solid mat-color($primary, 700);
+  }
+  & .ui-button-text {
+    padding: 8px 0 0 16px;
+  }
+}
+
+::ng-deep p-fileupload .ui-fileupload .ui-fileupload-content {
+  background: white;
+  border: 0 none;
+  padding: 0;
+}
+
+::ng-deep p-progressbar .ui-progressbar .ui-progressbar-value {
+  background: mat-color($primary) !important;
+}
+
+.mat-column-Type {
+  width: 150px;
+  flex: none;
+}
+
+.mat-column-Uploaded {
+  width: 180px;
+  flex: none;
+}
+
+.empty {
+  color: mat-color($min-grey);
+  font-style: italic;
+  margin-top: -80px;
+  position: relative;
+  text-align: center;
+}

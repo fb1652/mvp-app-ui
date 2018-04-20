@@ -1,0 +1,80 @@
+<div>
+  <app-spinner *ngIf="loading"></app-spinner>
+  <mat-tab-group class="wrapper" [selectedIndex]="tab">
+    <mat-tab>
+      <div style="padding: 32px;">
+        <h2>My Reports</h2>
+        <mat-toolbar class="search">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="filterValue" (keyup)="filter()">
+            <span matPrefix aria-label="Search">
+              <mat-icon class="search-icon">search</mat-icon>
+            </span>
+            <span matSuffix aria-label="Clear">
+              <mat-icon *ngIf="filterValue && filterValue !== ''" (click)="clear()">close</mat-icon>
+            </span>
+          </mat-form-field>
+        </mat-toolbar>
+        <span class="selectAll">
+          <mat-checkbox [(ngModel)]="selectedAll" (change)="selectAll()" disableRipple></mat-checkbox>
+        </span>
+        <mat-table #table [dataSource]="reports" class="search select" matSort
+          [ngStyle]="{'max-height': 'calc(100vh - 400px)'}">
+          <ng-container matColumnDef="Select">
+            <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+            <mat-cell *matCellDef="let report">
+              <mat-checkbox [(ngModel)]="report.checked" (change)="select()" disableRipple></mat-checkbox>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+            <mat-cell *matCellDef="let report">{{report.Date}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Type">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
+            <mat-cell *matCellDef="let report">{{report.Type}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Datacenter">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Datacenter</mat-header-cell>
+            <mat-cell *matCellDef="let report">{{report.Datacenter}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="User">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
+            <mat-cell *matCellDef="let report">{{report.User}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+            <mat-cell *matCellDef="let report; let i = index;">
+              <mat-progress-spinner *ngIf="report.Status === 'STARTING' || report.Status === 'RUNNING'" color="accent" [diameter]="20"
+              [mode]="report.Progress === 0 ? 'indeterminate' : 'determinate'" [value]="report.Progress"></mat-progress-spinner>
+              <a id="view-report-{{i}}" href="javascript:;" *ngIf="report.Status === 'COMPLETE'" (click)="view(report)" class="success">VIEW REPORT</a>
+              <label *ngIf="report.Status === 'FAILED'" matTooltip="{{report.Error}}" class="error">FAILED</label>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Delete">
+            <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+            <mat-cell *matCellDef="let report">
+              <mat-select (change)="delete(report)" disableRipple>
+                <mat-option class="delete">DELETE</mat-option>
+              </mat-select>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns;" [@state]="row.state" (@state.done)="handleState(row)"></mat-row>
+        </mat-table>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <mat-tab-group class="tabs">
+        <mat-tab *ngFor="let report of selectedReports" label="{{report.Type}}">
+          <div style="padding: 32px;">
+            <a href="javascript:;" (click)="tab=0">&lt; Back</a>
+            <div *ngIf="report.Type === 'Hardware'"><app-hardware [data]="report"></app-hardware></div>
+            <div *ngIf="report.Type === 'Software'"><app-software [data]="report"></app-software></div>
+            <div *ngIf="report.Type === 'Health Checks'"><app-healthcheck [data]="report"></app-healthcheck></div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,0 +1,10 @@
+<p-organizationChart [value]="topology" styleClass="company">
+  <ng-template let-node pTemplate="department">
+    <div class="node-header ui-corner-top">
+      {{node.label}}
+    </div>
+    <div class="node-content ui-corner-bottom">
+      {{node.data.name}}
+    </div>
+  </ng-template>
+</p-organizationChart>

@@ -1,0 +1,93 @@
+@import '~themes.scss';
+
+app-login {
+  .mat-card-header-text {
+    display: none !important;
+  }
+  .mat-card {
+    padding: 32px;
+  }
+  .mat-card-actions {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    .mat-form-field-underline {
+      display:none;
+    }
+  }
+}
+
+.alert {
+  margin: 16px 0;
+  & > div {
+    background-color: mat-color($min-red, 200);
+    border: 1px solid mat-color($min-red);
+    border-radius: 5px;
+    display: flex;
+    padding: 8px;
+  }
+  & a {
+    color: black;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.login-img {
+  height: 100px;
+  width: 100px;
+  margin: -10px 0 0 -15px;
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/assets/trianglify.svg") no-repeat center fixed;
+  background-size: cover;
+  background-color: mat-color($primary);
+}
+
+.login-form {
+  min-width: 515px;
+  margin-bottom: 50px;
+}
+
+.login-header {
+  display: flex;
+  padding-bottom: 32px;
+}
+
+.login-title {
+  width: 329px;
+  height: 76px;
+  font-size: 28px;
+  color: #4a4a4a;
+  font-weight: Bold;
+}
+
+.login-subtitle {
+  font-size: 18px;
+}
+
+.login-actions {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  & div {
+    display: flex;
+    & .space {
+      width: 48px;
+    }
+  }
+}
+
+.login-space {
+  flex: 1 1 auto;
+}
+

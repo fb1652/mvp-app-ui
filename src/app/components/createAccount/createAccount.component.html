@@ -1,0 +1,47 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div class="createAccount-container">
+  <form class="createAccount-form" [formGroup]="form" (ngSubmit)="createAccount(form.value)" flex="50">
+    <mat-card class="mat-elevation-z6">
+       <h2>Create Account</h2>
+      <mat-card-content>
+          <label for="create-account-last" class="label-space">Last Name</label>
+          <input id="create-account-last" placeholder="Last Name" [type]="'input'" formControlName="lastName" required>
+          <mat-error *ngIf="form.controls['lastName'].invalid && form.controls['lastName'].touched">Enter Last Name</mat-error>
+      </mat-card-content>
+      <mat-card-content>
+        <label for="create-account-first" class="label-space">First Name</label>
+        <input id= "create-account-first" placeholder="First Name" [type]="'input'" formControlName="firstName" required>
+          <mat-error *ngIf="form.controls['firstName'].invalid && form.controls['firstName'].touched">Enter First Name</mat-error>
+      </mat-card-content>
+      <mat-card-content>
+        <label for="create-account-email" class="label-space">Email</label>
+        <input id= "create-account-email"placeholder="Email Address" [type]="'email'" formControlName="email" required>
+          <mat-error *ngIf="form.controls['email'].invalid && form.controls['email'].touched">Enter a valid email</mat-error>
+      </mat-card-content>
+      <mat-card-content>
+        <label for="create-account-password" class="label-space">Password</label>
+        <input id= "create-account-password" placeholder="Password" [type]="'password'" formControlName="password" required>
+          <mat-error *ngIf="form.controls['password'].invalid && form.controls['password'].touched && onlytouched">Enter a password</mat-error>
+          <mat-error *ngIf="form.controls.password.errors?.passwordPatternForUppercase  && !onlytouched">that contains atleast one upper case letter</mat-error>
+          <mat-error *ngIf="form.controls.password.errors?.passwordPatternForNumber  && !onlytouched">that contains atleast one number</mat-error>
+          <mat-error *ngIf="form.controls.password.errors?.passwordPatternForLength && !onlytouched">that contains minimum 8 characters</mat-error>
+      </mat-card-content>
+      <mat-card-content>
+        <label for="create-account-confirm" class="label-space">Confirm Password</label>
+        <input id="create-account-confirm" placeholder="Confirm Password" [type]="'password'" formControlName="confirmPassword" required>
+          <mat-error class="input-error" *ngIf="form.controls.confirmPassword.errors?.MatchPassword">Passwords do not match</mat-error>
+      </mat-card-content>
+      <mat-card-actions>
+        <button id="create-account-submit" [type]="'submit'" mat-raised-button color="primary" [disabled]="!form.valid">Create Account</button>
+      </mat-card-actions>
+      <mat-card-actions *ngIf="success">
+        <h6>Account has been successfully created.
+          <a id="create-account-login" (click)="goBackToLogin()" href="javascript:;">Click here to Login</a></h6>
+      </mat-card-actions>
+      <mat-card-actions *ngIf="failed">
+        <mat-error class="input-error">User already exists</mat-error>
+      </mat-card-actions>
+      <mat-card-footer>&nbsp;</mat-card-footer>
+    </mat-card>
+  </form>
+</div>

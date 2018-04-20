@@ -1,0 +1,37 @@
+@import '~themes.scss';
+
+app-create-account {
+  .mat-card-actions, .mat-card-header-text {
+    margin: 0px !important;
+  }
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .mat-grid-list {
+    margin: 50px 0px;
+  }
+}
+
+.createAccount-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/assets/trianglify.svg") no-repeat center fixed;
+  background-size: cover;
+  background-color: mat-color($primary);
+}
+
+.createAccount-form {
+  min-width: 450px;
+  margin-bottom: 50px;
+}
+
+.create-account-field{
+  width: 75%;
+}
+
+.mat-card-actions{
+  margin-left: 0px;
+}

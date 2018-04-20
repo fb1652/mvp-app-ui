@@ -1,0 +1,62 @@
+<div>
+  <div *ngIf="errors.length" class="file-errors">
+    <span>
+      <p>The following files were rejected because they are incompatible or contain insufficient data:</p>
+      <mat-icon (click)="errors = []">close</mat-icon>
+    </span>
+    <ul>
+      <li *ngFor="let error of errors">{{error.filename}}</li>
+    </ul>
+  </div>
+  <p-fileUpload id="scan-fileupload" chooseLabel="Browse Files" auto="true" multiple="multiple" name="files[]" url="{{url()}}"
+    [withCredentials]="true" (onUpload)="onUpload($event)">
+    <ng-template pTemplate="file">&nbsp;</ng-template>
+    <ng-template pTemplate="content">
+      <mat-toolbar class="search">
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="filterValue" (keyup)="filter()">
+          <span matPrefix aria-label="Search">
+            <mat-icon class="search-icon">search</mat-icon>
+          </span>
+          <span matSuffix aria-label="Clear">
+            <mat-icon *ngIf="filterValue && filterValue !== ''" (click)="clear()">close</mat-icon>
+          </span>
+        </mat-form-field>
+      </mat-toolbar>
+      <mat-table #table [dataSource]="attachments" class="search" matSort style="top:0px;"
+        [ngStyle]="{'max-height': 'calc(100vh - ' + (errors.length ? size + 150 : size) + 'px)'}">
+        <ng-container matColumnDef="Filename">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Filename</mat-header-cell>
+          <mat-cell *matCellDef="let attachment">{{attachment.Filename}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Description">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+          <mat-cell *matCellDef="let attachment">
+            <span *ngIf="!writable">{{attachment.Description}}</span>
+            <input *ngIf="writable" matInput placeholder="Enter Description" type="text" name="description"
+            [(ngModel)]="attachment.Description" (blur)="save(attachment)" (keyup.enter)="save(attachment)">
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
+          <mat-cell *matCellDef="let attachment">{{attachment.Type}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Uploaded">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Uploaded</mat-header-cell>
+          <mat-cell *matCellDef="let attachment">{{attachment.Uploaded}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Delete">
+          <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+          <mat-cell *matCellDef="let attachment; let i = index;">
+            <mat-select id="delete-scan-{{i}}" (change)="delete(attachment)" disableRipple>
+              <mat-option class="delete">DELETE</mat-option>
+            </mat-select>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columns;" [@state]="row.state" (@state.done)="handleState(row)"></mat-row>
+      </mat-table>
+      <div *ngIf="!attachments || !attachments.data.length" class="empty">No scans or contrast files.</div>
+    </ng-template>
+  </p-fileUpload>
+</div>

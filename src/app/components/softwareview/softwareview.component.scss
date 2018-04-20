@@ -1,0 +1,52 @@
+@import '~themes.scss';
+
+.nolines > ::ng-deep mat-header-row {
+  border: 0 none;
+  text-align: left;
+}
+
+.nolines > ::ng-deep mat-row {
+  border: 0 none;
+  text-align: left;
+}
+
+//.header-dark-grey {
+//  color: #ffffff;
+//  background-color: #adabab;
+//}
+
+.header-search {
+  background-color: #adabab;
+  border: 1px solid black;
+  border-bottom: none;
+  color: #ffffff;
+  height: 50px;
+  margin-top: 50px;
+  padding: 0 24px;
+}
+
+.header-dark-grey {
+  background-color: #adabab;
+  border-top: none;
+  color: #ffffff;
+}
+
+.justify-left > ::ng-deep figure {
+  display: block;
+}
+
+::ng-deep app-software-view .hidden .mat-tab-header {
+  display: none !important;
+}
+
+::ng-deep app-software-view .tabs .mat-tab-header {
+  display: flex !important; // original
+}
+
+::ng-deep app-software-view .tabs .mat-tab-label-active {
+  background-color: mat-color($primary, 100);
+}
+
+.justify-left > ::ng-deep figure {
+  display: block;
+}

@@ -1,0 +1,35 @@
+@import '~themes.scss';
+
+::ng-deep .mat-tab-group.wrapper .mat-tab-header {
+  display: none;
+}
+
+::ng-deep .mat-tab-group.tabs .mat-tab-header {
+  background-color: mat-color($min-grey, 50);
+  border: none;
+  display: flex;
+  max-width: 100%;
+}
+
+h2 {
+  margin: 32px 0 !important;
+}
+
+a {
+  outline: none;
+}
+
+.mat-column-Date {
+  width: 180px;
+  flex: none;
+}
+
+.mat-column-Status {
+  width: 150px;
+  flex: none;
+}
+
+label.error {
+  color: red;
+  cursor: pointer;
+}

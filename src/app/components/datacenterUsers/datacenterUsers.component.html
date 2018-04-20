@@ -1,0 +1,138 @@
+<div>
+  <mat-toolbar class="search">
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="filterValue" (keyup)="filter()">
+      <span matPrefix aria-label="Search">
+        <mat-icon class="search-icon">search</mat-icon>
+      </span>
+      <span matSuffix aria-label="Clear">
+        <mat-icon *ngIf="filterValue && filterValue !== ''" (click)="clear()">close</mat-icon>
+      </span>
+    </mat-form-field>
+    <button style="float: right;" class="add-user primary" (click)="add()">
+      <mat-icon class="pre">person_add</mat-icon>
+      Add User
+    </button>
+  </mat-toolbar>
+  <mat-table #table [dataSource]="users" matSort
+    [ngStyle]="{'max-height': 'calc(100vh - ' + size + 'px)'}">
+    <ng-container matColumnDef="Select">
+      <mat-header-cell *matHeaderCellDef>Select</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <mat-checkbox class="select" [(ngModel)]="user.checked" (change)="select()" disableRipple></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.Email}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="First">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>First</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.First}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Last">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Last</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.Last}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Role" *ngIf="datacenter.Role!=='ADMIN'">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.Role}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Role" *ngIf="datacenter.Role==='ADMIN'">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <mat-select [(ngModel)]="user.Role" (change)="save(user)">
+          <mat-option *ngFor="let role of ['USER', 'ADMIN']" [value]="role">{{role}}</mat-option>
+        </mat-select>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Delete">
+      <mat-header-cell *matHeaderCellDef>Remove</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <mat-select (change)="remove(user)" disableRipple>
+          <mat-option class="delete">REMOVE</mat-option>
+        </mat-select>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columns;" [@state]="row.state" (@state.done)="handleState(row)"></mat-row>
+  </mat-table>
+</div>
+
+
+<!-- <app-spinner *ngIf="loading"></app-spinner>
+<div class="users-header">
+  <mat-grid-list cols="1" rowHeight="80px" *ngIf="datacenter.Role!=='ADMIN'">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-form-field>
+        <input matInput placeholder="Filter" (keyup)="filter($event.target.value)">
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="12" rowHeight="80px" *ngIf="datacenter.Role==='ADMIN'">
+    <mat-grid-tile [colspan]="11" [rowspan]="1">
+      <mat-form-field>
+        <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="autocompleteForm" pattern="^[^ ]+ - \w+ \w+$">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let user of autocompleteUsers | async" value="{{user.Email}} - {{user.First}} {{user.Last}}">
+            <span>{{user.Email}} - {{user.First}} {{user.Last}}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <button (click)="add()" [disabled]="!autocompleteForm.valid || !autocompleteForm.value || autocompleteForm.value === ''" mat-fab color="accent">
+        <mat-icon>person_add</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="11" [rowspan]="1">
+      <mat-form-field>
+        <input matInput placeholder="Filter" (keyup)="filter($event.target.value)">
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<section>
+  <div class="users-container mat-elevation-z6">
+    <mat-table #table [dataSource]="users" matSort>
+      <ng-container matColumnDef="Email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{user.Email}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="First">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>First</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{user.First}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Last">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Last</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{user.Last}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Role" *ngIf="datacenter.Role!=='ADMIN'">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+        <mat-cell *matCellDef="let user">{{user.Role}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Role" *ngIf="datacenter.Role==='ADMIN'">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <mat-select class="user-role" [(ngModel)]="user.Role" (change)="save(user)">
+            <mat-option *ngFor="let role of ['USER', 'ADMIN']" [value]="role">{{role}}</mat-option>
+          </mat-select>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Remove">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Remove</mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <a aria-label="Remove" class="mat-button user-action" (click)="remove(user)" mat-button>
+            <span class="mat-button-wrapper">
+              <mat-icon color="warn">delete_forever</mat-icon>
+            </span>
+            <div class="mat-button-rupple mat-ripple" matripple></div>
+            <div class="mat-button-focus-overlay" matripple></div>
+          </a>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columns;" [@state]="row.state" (@state.done)="handleState(row)"></mat-row>
+    </mat-table>
+  </div>
+</section> -->

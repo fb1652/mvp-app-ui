@@ -1,0 +1,2 @@
+FROM s390x/nginx:1.13.6
+COPY nginx.conf /etc/nginx/nginx.conf

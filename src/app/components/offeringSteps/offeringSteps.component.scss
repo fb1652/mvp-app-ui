@@ -1,0 +1,70 @@
+@import '~themes.scss';
+
+h3 {
+  margin: 32px 0 0 0 !important;
+}
+
+p {
+  // margin-bottom: 32px;
+  // white-space: pre-line;
+}
+
+.stepper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.stepper-nav {
+  border-top: 1px solid mat-color($min-grey, 400);
+  background-color: white;
+  display: flex;
+  position: sticky;
+  top: 100vh;
+  padding: 24px 0;
+  margin: 0 32px;
+  & button {
+    width: 120px;
+  }
+}
+
+.mat-stepper-horizontal {
+  background-color: unset;
+}
+
+::ng-deep .mat-stepper-horizontal.offering-steps div.mat-horizontal-stepper-header-container {
+  min-width: 800px;
+  width: 60%;
+}
+
+::ng-deep .mat-stepper-horizontal.offering-steps div.mat-horizontal-stepper-header-container .mat-step-header {
+  height: 48px;
+}
+
+::ng-deep .mat-stepper-horizontal.offering-steps .mat-horizontal-content-container {
+  padding: 0 32px 32px 32px;
+}
+
+.run-jcl {
+  box-sizing: border-box;
+  max-width: 620px;
+}
+
+::ng-deep .run-jcl p {
+  white-space: pre-line;
+}
+
+::ng-deep .run-jcl ol {
+  padding-left: 16px;
+}
+
+::ng-deep .run-jcl ol li {
+  margin-bottom: 24px;
+}
+
+.well {
+  background-color: mat-color($min-grey, 50);
+  margin: 24px 0;
+  padding: 20px;
+  max-width: fit-content;
+}

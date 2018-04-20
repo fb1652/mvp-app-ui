@@ -1,0 +1,82 @@
+<h1 id="hardware-title" align="center">Hardware</h1>
+<mat-grid-list cols="5" rowHeight="50px" align="center">
+  <mat-grid-tile [rowspan]="9" [colspan]="1" rowHeight="fit">
+    <img src="assets/mainframe.png" alt="Mainframe" aria-hidden="true" style="height: 200px">
+  </mat-grid-tile>
+  <mat-grid-tile [rowspan]="9" [colspan]="1" rowHeight="fit" class="justify-left">
+    <mat-table [dataSource]="summary" class="nolines">
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef>Summary</mat-header-cell>
+        <mat-cell *matCellDef="let system">{{system.Name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Value">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let system">{{system.Value}}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+  </mat-grid-tile>
+  <mat-grid-tile [rowspan]="9" [colspan]="1" rowHeight="fit" class="justify-left">
+    <mat-table [dataSource]="configuration" class="nolines">
+      <ng-container matColumnDef="Device">
+        <mat-header-cell *matHeaderCellDef>Configuration</mat-header-cell>
+        <mat-cell *matCellDef="let config">{{config.Name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Configuration">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let config">{{config.Value}}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="configToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let conrow; columns: configToDisplay"></mat-row>
+    </mat-table>
+  </mat-grid-tile>
+  <mat-grid-tile [rowspan]="9" [colspan]="1" rowHeight="fit" class="justify-left">
+    <mat-table [dataSource]="peripherals" class="nolines">
+      <ng-container matColumnDef="Peripheral">
+        <mat-header-cell *matHeaderCellDef>Peripherals</mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.Name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Number">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let data">{{data.Value}}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="perfsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let conrow; columns: perfsToDisplay"></mat-row>
+    </mat-table>
+  </mat-grid-tile>
+  <mat-grid-tile [rowspan]="9" [colspan]="1" rowHeight="fit" class="justify-left">
+    <mat-table [dataSource]="io" class="nolines">
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef>Other</mat-header-cell>
+        <mat-cell *matCellDef="let device">{{device.Name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Value">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let device">{{device.Value}}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let devrow; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+  </mat-grid-tile>
+</mat-grid-list>
+<div>
+  <mat-tab-group class="tabs">
+    <mat-tab label="Processors">
+      <h4>Total: {{this.data.Data.reports.processors.length}}</h4>
+      <app-sort-filter-table [table]="processors" [columnDefs]="processorsColumnDefs" [columnsToDisplay]="procsToDisplay"></app-sort-filter-table>
+    </mat-tab>
+    <mat-tab label="Configuration">
+      <h4><span *ngFor="let number of this.data.Data.reports.configuration">{{number.Name}} {{number.Value}} </span></h4>
+      <app-sort-filter-table [table]="configtable" [columnDefs]="configurationColumnDefs" [columnsToDisplay]="configtableToDisplay"></app-sort-filter-table>
+    </mat-tab>
+    <mat-tab label="Peripherals">
+      <h4><span *ngFor="let value of this.data.Data.reports.peripherals">{{value.Name}} {{value.Value}} </span></h4>
+      <app-sort-filter-table [table]="peripheraltable" [columnDefs]="peripheraltableColumnDefs" [columnsToDisplay]="peripheralToDisplay"></app-sort-filter-table>
+    </mat-tab>
+    <mat-tab label="Other">
+      <app-sort-filter-table [table]="io" [columnDefs]="ioColumnDefs" [columnsToDisplay]="otherCpcColumnsToDisplay"></app-sort-filter-table>
+    </mat-tab>
+    <br>
+  </mat-tab-group>
+</div>

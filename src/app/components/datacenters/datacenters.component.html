@@ -1,0 +1,46 @@
+<div style="padding: 32px;">
+  <h2 id="datacenters-title">My Datacenters</h2>
+  <mat-toolbar class="search">
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="filterValue" (keyup)="filter()">
+      <span matPrefix aria-label="Search">
+        <mat-icon class="search-icon">search</mat-icon>
+      </span>
+      <span matSuffix aria-label="Clear">
+        <mat-icon *ngIf="filterValue && filterValue !== ''" (click)="clear()">close</mat-icon>
+      </span>
+    </mat-form-field>
+    <div style="flex: 1 1 auto;"></div>
+    <button id="define-datacenter" class="primary" (click)="add()">
+      <mat-icon class="pre">add_box</mat-icon>
+      Add a Datacenter</button>
+  </mat-toolbar>
+
+  <mat-table id="datacenters-table" #table [dataSource]="datacenters" class="search" style="top:0px;" matSort
+    [ngStyle]="{'max-height': 'calc(100vh - 400px)'}">
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let datacenter">{{datacenter.Name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+      <mat-cell *matCellDef="let datacenter">{{datacenter.Description}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="View">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>View</mat-header-cell>
+      <mat-cell *matCellDef="let datacenter">
+        <a id='view-datacenter' (click)="view(datacenter)" href="javascript:;">VIEW DATACENTER</a>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Delete">
+      <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+      <mat-cell *matCellDef="let datacenter; let i = index">
+        <mat-select id="datacenter-{{i}}-delete" (change)="delete(datacenter)" disableRipple>
+          <mat-option id="datacenter-{{i}}-delete-confirm" class="delete">DELETE</mat-option>
+        </mat-select>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columns;" [@state]="row.state" (@state.done)="handleState(row)"></mat-row>
+  </mat-table>
+</div>

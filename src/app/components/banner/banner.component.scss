@@ -1,0 +1,38 @@
+@import '~themes.scss';
+
+.banner {
+  background-color: mat-color($min-grey, 50);
+  height: 230px;
+  padding: 32px;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600 !important;
+  min-height: 100%;
+  max-height: 100%;
+  padding: 0 10px 0 0;
+  width: 40%;
+}
+
+.banner-image {
+  height: 169px;
+}
+
+.more {
+  font-size: 22px;
+  width: fit-content;
+}
+
+h4.text {
+  color: mat-color($min-grey, 900) !important;
+  display: flex;
+  flex: 1 1 auto;
+  font-size: 20px !important;
+  white-space: normal;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

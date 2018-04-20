@@ -1,0 +1,53 @@
+@import '~themes.scss';
+
+.category {
+  margin-top: 32px;
+  & + .category { margin-top: 0; }
+  & + .category:last-of-type { margin-bottom: 8px; } // + card margin (24) = 32px
+}
+
+.category-title {
+  margin: 0 32px !important;
+}
+
+.category-row {
+  display: flex;
+  flex-flow: nowrap;
+  margin: 0 32px;
+  overflow-x: auto;
+}
+
+.offering {
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 224px;
+  margin: 24px 0;
+  max-width: 550px;
+  min-width: 450px;
+  padding: 16px;
+  width: 32%;
+  & + .offering {
+    margin-left: 32px;
+    margin-right: 0;
+  }
+}
+
+.offering-img {
+  bottom: 16px;
+  height: 130px;
+  position: absolute;
+  right: 16px;
+}
+
+p.long {
+  color: mat-color($min-grey, 700);
+  margin-right: 150px;
+}
+
+.mat-card-title-group {
+  margin: 0;
+}
+
+.mat-card-subtitle {
+  margin-bottom: 0;
+}

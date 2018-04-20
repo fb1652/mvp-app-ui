@@ -1,0 +1,137 @@
+version: "3"
+
+services:
+
+  proxy:
+    build: proxy
+    depends_on:
+      - mri-app-server
+    ports:
+      - 80:80
+    restart: always
+
+  mri-app-server:
+    image: isl-dsdc.ca.com:5000/msc/mri-app-server:latest
+    environment:
+      MRI_DOC: "true"
+      MRI_CSO_URL: "http://cso:8081"
+      MRI_DB_APP: "mongodb://mongo:27017/app"
+      MRI_DB_SESSION: "mongodb://mongo:27017/session"
+      MRI_KAFKA_URL: "kafka:9092"
+      DEBUG: "mri*"
+    links:
+      - mongo
+      - kafka
+    ports:
+      - 3000:3000
+    restart: always
+
+  mri-admin-ui:
+    image: isl-dsdc.ca.com:5000/msc/mri-admin-ui:latest
+    ports:
+      - 4300:4300
+    restart: always
+
+  mri-admin-server:
+    image: isl-dsdc.ca.com:5000/msc/mri-admin-server:latest
+    environment:
+      MRI_DOC: "true"
+      MRI_CSO_URL: "http://cso:8081"
+      MRI_DB_APP: "mongodb://mongo:27017/app"
+      MRI_DB_SESSION: "mongodb://mongo:27017/session"
+      MRI_KAFKA_URL: "kafka:9092"
+      DEBUG: "mri*"
+    links:
+      - mongo
+      - kafka
+    ports:
+      - 3100:3100
+    restart: always
+
+  mri-parser:
+    image: isl-dsdc.ca.com:5000/msc/mri-parser:latest
+    environment:
+      MRI_DB_APP: "mongodb://mongo:27017/app"
+      MRI_KAFKA_URL: "kafka:9092"
+      DEBUG: "mri*"
+    links:
+      - mongo
+      - kafka
+    restart: always
+
+  mri-engine-hardware:
+    image: isl-dsdc.ca.com:5000/msc/mri-engine-hardware:latest
+    environment:
+      MRI_DB_APP: "mongodb://mongo:27017/app"
+      MRI_DB_SESSION: "mongodb://mongo:27017/session"
+      MRI_KAFKA_URL: "kafka:9092"
+      DEBUG: "mri*"
+    links:
+      - mongo
+      - kafka
+    expose:
+      - 3000
+    restart: always
+
+  mri-engine-healthcheck:
+    image: isl-dsdc.ca.com:5000/msc/mri-engine-healthcheck:latest
+    environment:
+      MRI_DB_APP: "mongodb://mongo:27017/app"
+      MRI_DB_SESSION: "mongodb://mongo:27017/session"
+      MRI_KAFKA_URL: "kafka:9092"
+      DEBUG: "mri*"
+    links:
+      - mongo
+      - kafka
+    expose:
+      - 3000
+    restart: always
+
+  mri-engine-software:
+    image: isl-dsdc.ca.com:5000/msc/mri-engine-software:latest
+    environment:
+      MRI_DB_APP: "mongodb://mongo:27017/app"
+      MRI_DB_SESSION: "mongodb://mongo:27017/session"
+      MRI_KAFKA_URL: "kafka:9092"
+      DEBUG: "mri*"
+    links:
+      - mongo
+      - kafka
+    expose:
+      - 3000
+    restart: always
+
+  cso:
+    image: isl-dsdc.ca.com:5000/msc/convert-cso:latest
+    ports:
+      - 8081:8081
+    restart: always
+
+  mongo:
+    image: mongo:3.4.7
+    ports:
+      - 27017:27017
+    volumes:
+      - /data/db:/data/db
+    restart: always
+
+  kafka:
+    image: wurstmeister/kafka:0.11.0.1
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: "kafka"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_ADVERTISED_PORT: 9092
+    links:
+      - zookeeper
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+
+  zookeeper:
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - 2181:2181
+    restart: always

@@ -1,0 +1,7 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<mat-tab-group class="tabs" (selectedTabChange)="tabChanged()">
+  <mat-tab *ngFor="let data of dataArray">
+    <ng-template mat-tab-label>{{data.Data.reports.complex[0].Name}}</ng-template>
+    <app-software-view [data]="data"></app-software-view>
+  </mat-tab>
+</mat-tab-group>

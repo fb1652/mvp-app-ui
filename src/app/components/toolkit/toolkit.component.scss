@@ -1,0 +1,53 @@
+@import '~themes.scss';
+
+.post {
+  top: -5px;
+  position: relative;
+}
+
+.after-you-have-download {
+  height: 24px;
+  width: 749px;
+  color: #333840;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.stepper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.stepper-nav {
+  border-top: 1px solid mat-color($min-grey, 400);
+  background-color: white;
+  display: flex;
+  position: sticky;
+  top: 100vh;
+  padding: 24px 0;
+  margin: 0 32px;
+  & button {
+    width: 120px;
+  }
+}
+
+.mat-stepper-vertical {
+  background-color: unset;
+}
+
+::ng-deep .mat-stepper-vertical .mat-vertical-content-container {
+  margin: 0 0 0 12px;
+}
+
+
+::ng-deep .mat-stepper-vertical .mat-vertical-stepper-header {
+  padding: 24px 0;
+}
+
+.download-button {
+  margin-top: 40px;
+  margin-bottom: 24px;
+}

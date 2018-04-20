@@ -1,0 +1,54 @@
+<div *ngIf="offering" id="offering-overview">
+  <mat-toolbar class="banner">
+    <img class="banner-image" src="{{offering.ImageUrl}}" alt="img" aria-hidden="true">
+    <h2 id="{{offering.Name + '-title-id'}}">{{offering.Name}} MRI</h2>
+  </mat-toolbar>
+  <div class="overview">
+    <div>
+      <!-- <div class="back">
+        <a href="javascript:;" routerLink="/Catalog">&lt; Back</a>
+      </div> -->
+      <h3>Overview</h3>
+      <p style="margin-bottom: 0">{{offering.Overview}}</p>
+    </div>
+    <div class="overview-buffer"></div>
+  </div>
+  <div class="overview" id ="overview_div">
+    <div class="content">
+      <h3>{{offering.Overview2Title}}</h3>
+      <div class="list" id="first-paragraph" [innerHTML]=offering.Provides></div>
+      <hr>
+      <h3>Prerequisites</h3>
+      <div id="second-paragraph" [innerHTML]=offering.Prereq></div>
+      <hr>
+      <h3>Steps to Run the Scan</h3>
+      <div class="overview-steps">
+        <div class="step-icon">1</div>
+        <h4>Define Datacenter</h4>
+        <div class="step-icon">2</div>
+        <h4>Generate Data</h4>
+        <div class="step-icon">3</div>
+        <h4>Upload Data</h4>
+        <div class="step-icon">4</div>
+        <h4>Confirm Submission</h4>
+      </div>
+      <p>Mainframe Resource Intelligence (MRI) allows you to easily and frequently run scans of your mainframe configuration to recommend improvements to optimize cost savings, reliability, processes, and security.</p>
+      <hr>
+      <button id="start-scan-button" (click)="begin()" class="primary">Start a Scan</button>
+      <hr style="margin-bottom: 0;">
+    </div>
+    <div class="sidebar" id="about-sidebar">
+      <h3>About</h3>
+      <p>
+        Version 0.1
+        Last Updated **/**/**
+      </p>
+      <br>
+      <h3>Support</h3>
+      <p style="white-space: normal;">
+        For product information and help, see <a target="_blank" href="https://support.ca.com">CA Support </a>.
+        To contact CA Support, see <a target="_blank" href="https://www.ca.com/us/services-support/ca-support/contact-support.html">Contact CA Support</a> for details.
+      </p>
+    </div>
+  </div>
+</div>

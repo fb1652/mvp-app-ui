@@ -1,0 +1,34 @@
+<div style="padding: 32px;">
+  <a href="javascript:;" routerLink="/Datacenters">&lt; Back</a>
+  <form class="datacenter" [formGroup]="form" (ngSubmit)="save()" mat-elevation-z6>
+    <div style="display:flex;height: 40px;">
+      <h3 *ngIf="!editting" id="datacenter-name">{{datacenter.Name}}</h3>
+      <mat-form-field *ngIf="editting" class="name" floatLabel="always" [@state]="name.state" (@state.done)="handleState(name)">
+        <mat-label></mat-label>
+        <input matInput id="datacenter-name-edit" placeholder="Enter a Name" name="name" formControlName="name" [(ngModel)]="datacenter.Name" (blur)="save()" (keyup.enter)="save()">
+        <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].touched">Enter a valid name</mat-error>
+      </mat-form-field>
+      <mat-icon *ngIf="datacenter.Role==='ADMIN'" class="edit" (click)="editting=!editting;save()">{{editting ? 'check' : 'mode_edit'}}</mat-icon>
+    </div>
+    <p *ngIf="!editting" id="datacenter-description">{{datacenter.Description}}</p>
+    <mat-form-field  *ngIf="editting" class="description" style="min-height: 86px"floatLabel="always" [@state]="description.state" (@state.done)="handleState(description)">
+      <mat-label></mat-label>
+      <textarea matInput placeholder="Enter a Description" id="datacenter-description-edit" name="description" formControlName="description" [(ngModel)]="datacenter.Description" (blur)="save()" (keyup.enter)="save()"></textarea>
+    </mat-form-field>
+    <p>Created {{datacenter.CreatedAt}} by {{datacenter.CreatedBy}}</p>
+    <p>Last Modified {{datacenter.UpdatedAt}} by {{datacenter.UpdatedBy}}</p>
+    <p id="datacenter-role">Your Role: {{datacenter.Role}}</p>
+  </form>
+  <mat-tab-group class="tab-group">
+    <mat-tab id="scans-tab" label="Scans &amp; Contrasts">
+      <div class="tab-content">
+        <app-scan [writable]="true" [size]="730"></app-scan>
+      </div>
+    </mat-tab>
+    <mat-tab id="users-tab" label="Users">
+      <div class="tab-content">
+        <app-datacenter-users *ngIf="datacenter.Id" [datacenter]="datacenter"></app-datacenter-users>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

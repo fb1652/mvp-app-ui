@@ -1,0 +1,412 @@
+@import '~themes.scss';
+
+html, body {
+  font-family: 'Open Sans' !important;
+  height: 100%;
+  margin: 0;
+}
+
+h1, .mat-toolbar h1 {
+  color: mat-color($min-grey, 900);
+  font-size: 2.125em !important;
+  font-weight: 800 !important;
+  line-height: 1.41 !important;
+  margin: 0 0 16px 0 !important;
+}
+
+h2, .mat-toolbar h2 {
+  color: mat-color($min-grey, 700);
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  line-height: 1.43 !important;
+  margin: 0 0 8px 0 !important;
+}
+
+h3, .mat-toolbar h3 {
+  color: mat-color($min-grey, 700);
+  font-size: 1.375rem !important;
+  font-weight: 700 !important;
+  line-height: 1.45 !important;
+  margin: 0 0 8px 0 !important;
+}
+
+h4, .mat-toolbar h4 {
+  color: mat-color($min-grey, 700);
+  font-size: 1.125rem !important;
+  font-weight: 700 !important;
+  line-height: 1.33 !important;
+  margin: 0 0 8px 0 !important;
+}
+
+h5, .mat-toolbar h5 {
+  color: mat-color($min-grey, 900);
+  font-size: 0.875rem !important;
+  font-weight: 700 !important;
+  line-height: 1.43 !important;
+  margin: 24px 0 !important;
+}
+
+h6, .mat-toolbar h6 {
+  color: mat-color($min-grey, 700);
+  font-size: 0.875rem !important;
+  font-weight: 400 !important;
+  line-height: 1.43 !important;
+  margin: 24px 0 !important;
+}
+
+p, ol, ul {
+  color: mat-color($min-grey, 900);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  margin: 8px 0 24px 0;
+}
+
+p + p {
+  margin: -16px 0 24px 0;
+}
+
+p.long {
+  color: mat-color($min-grey, 900);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+p.mousetype {
+  color: mat-color($min-grey, 700);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+p.long, p.mousetype, ol, ul {
+  margin: 24px 0;
+}
+
+ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+a {
+  font-size: 14px;
+  color: mat-color($primary);
+  text-decoration: none;
+
+  &:link, &:visited {@extend a;} // default
+  &:focus {
+    color: mat-color($primary);
+    outline: 1px solid mat-color($primary);
+    outline-offset: 2px;
+  }
+  &:hover {
+    color: mat-color($primary, 300);
+    text-decoration: underline;
+  }
+  &:active {color: mat-color($primary, 300);}
+
+  &.success {
+    color: mat-color($min-green, 600);
+    text-decoration: none;
+
+    &:link, &:visited {@extend a.success;} // default
+    &:focus {
+      color: mat-color($min-green, 600);
+      outline: 1px solid mat-color($min-green, 600);
+    }
+    &:hover {
+      color: mat-color($min-green);
+      text-decoration: underline;
+    }
+    &:active {color: mat-color($min-green);}
+  }
+
+  &.warning {
+    color: mat-color($min-yellow, 600);
+    text-decoration: none;
+
+    &:link, &:visited {@extend a.warning;} // default
+    &:focus {
+      color: mat-color($min-yellow, 600);
+      outline: 1px solid mat-color($min-yellow, 600);
+    }
+    &:hover {
+      color: mat-color($min-yellow);
+      text-decoration: underline;
+    }
+    &:active {color: mat-color($min-yellow);}
+  }
+
+  &.error {
+    color: mat-color($min-red, 600);
+    text-decoration: none;
+
+    &:link, &:visited {@extend a.error;}
+    &:focus {
+      color: mat-color($min-red, 600);
+      outline: 1px solid mat-color($min-red, 600);
+    }
+    &:hover {
+      color: mat-color($min-red);
+      text-decoration: underline;
+    }
+    &:active {color: mat-color($min-red);}
+  }
+}
+
+button {
+  @extend .mat-typography; // for fonts
+  background-color: mat-color($min-grey, 200);
+  border: 1px solid mat-color($min-grey);
+  border-radius: 5px !important;
+  color: black;
+  cursor: pointer;
+  font-size: 0.875rem;
+  height: 40px;
+  padding: 0 16px;
+  width: fit-content;
+
+  // sizes
+  &.small {
+    font-size: 0.75rem;
+    height: 24px;
+    padding: 0 8px;
+  }
+  &.medium {
+    height: 32px;
+    padding: 0 8px;
+  }
+  &.large {@extend button;} // default
+  &.jumbo {height: 52px;}
+
+  // icons
+  & .mat-icon {
+    font-size: 24px;
+    height: 24px;
+    margin: 0 8px;
+    vertical-align: bottom;
+    width: 24px;
+    &.pre {margin-left: -8px;}
+    &.post {margin-right: -8px;}
+  }
+  &.small .mat-icon, &.medium .mat-icon {
+    font-size: 16px;
+    height: 16px;
+    vertical-align: sub;
+    width: 16px;
+    &.pre {margin-left: 0;}
+    &.post {margin-right: 0;}
+  }
+
+  // interaction
+  &:disabled, &.disabled {
+    background-color: mat-color($min-grey, 200) !important;
+    border: 1px solid mat-color($min-grey, 300) !important;
+    box-shadow: none !important;
+    color: mat-color($min-grey) !important;
+    cursor: not-allowed !important;
+    outline: unset !important;
+  }
+  &:focus {
+    border: none;
+    box-shadow: 0 0 0px 1px white, 0 0 0px 2px mat-color($primary);
+    outline: unset;
+  }
+  &:hover {background-color: mat-color($min-grey, 100);}
+  &:active {background-color: mat-color($min-grey, 400);}
+
+  // states
+  &.primary {
+    background-color: mat-color($primary);
+    border: 1px solid mat-color($primary);
+    color: white;
+    &:hover {
+      background-color: mat-color($primary, 300);
+      border: 1px solid mat-color($primary, 300);
+    }
+    &:active {
+      background-color: mat-color($primary, 700);
+      border: 1px solid mat-color($primary, 700);
+    }
+  }
+  &.success {
+    background-color: mat-color($min-green, 800);
+    border: 1px solid mat-color($min-green, 800);
+    color: white;
+    &:focus {box-shadow: 0 0 0px 1px white, 0 0 0px 2px mat-color($min-green, 800);}
+    &:hover {
+      background-color: mat-color($min-green, 600);
+      border: 1px solid mat-color($min-green, 600);
+    }
+    &:active {
+      background-color: mat-color($min-green, 900);
+      border: 1px solid mat-color($min-green, 900);
+    }
+  }
+  &.warning {
+    background-color: mat-color($min-orange, 700);
+    border: 1px solid mat-color($min-orange, 700);
+    color: white;
+    &:focus {box-shadow: 0 0 0px 1px white, 0 0 0px 2px mat-color($min-orange, 700);}
+    &:hover {
+      background-color: mat-color($min-orange);
+      border: 1px solid mat-color($min-orange);
+    }
+    &:active {
+      background-color: mat-color($min-orange, 800);
+      border: 1px solid mat-color($min-orange, 800);
+    }
+  }
+  &.danger {
+    background-color: mat-color($min-red, 700);
+    border: 1px solid mat-color($min-red, 700);
+    color: white;
+    &:focus {box-shadow: 0 0 0px 1px white, 0 0 0px 2px mat-color($min-red, 700);}
+    &:hover {
+      background-color: mat-color($min-red);
+      border: 1px solid mat-color($min-red);
+    }
+    &:active {
+      background-color: mat-color($min-red, 800);
+      border: 1px solid mat-color($min-red, 800);
+    }
+  }
+  &.minimal {
+    background-color: unset;
+    border: unset;
+    color: mat-color($primary);
+    &:hover {background-color: mat-color($min-grey, 100);}
+    &:active {background-color: mat-color($min-grey, 200);}
+  }
+}
+
+input {
+    width:436px;
+    font-size:14px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    border:1px solid #757575;
+  }
+::-moz-selection {
+  background: mat-color($primary, 300);
+}
+
+::selection {
+  background: mat-color($primary, 300);
+}
+
+/* CHECKBOXES */
+
+mat-checkbox .mat-checkbox-layout .mat-checkbox-inner-container .mat-checkbox-ripple {
+  display: none;
+}
+
+/* SELECT */
+
+mat-select .mat-select-trigger .mat-select-arrow-wrapper {
+  position: relative;
+  right: 20px;
+}
+
+/* TABLES */
+
+.mat-toolbar.search {
+  background-color: mat-color($min-grey, 50) !important;
+  height: 60px;
+  & mat-form-field {
+    width: 300px;
+    & .mat-form-field-wrapper {
+      padding: 0;
+      & .mat-form-field-underline {display: none;}
+      & .mat-form-field-flex {
+        background-color: white;
+        border: 1px solid mat-color($min-grey);
+        border-radius: 5px;
+        margin: 0;
+        padding: 5px;
+        & .mat-form-field-prefix span .mat-icon {
+          font-size: 100%;
+          margin-right: 8px;
+        }
+        & .mat-form-field-suffix span .mat-icon {
+          color: mat-color($min-grey);
+          cursor: pointer;
+          font-size: 100%;
+          margin-left: 8px;
+        }
+        & .mat-form-field-infix {
+          border: 0;
+          padding: 0;
+          top: -1px;
+          & .mat-form-field-label-wrapper {
+            display: none;
+            padding: 0;
+            top: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.selectAll {
+  position: relative;
+  top: 12px;
+  left: 24px;
+  z-index: 2;
+}
+
+.mat-table {
+  min-height: 120px;
+  max-height: calc(100vh - 500px);
+  overflow: auto;
+  & > .mat-header-row {
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    & .mat-header-cell .mat-sort-header-container .mat-sort-header-button {
+      box-shadow: none;
+      &:focus {background-color: white;}
+      &:hover {background-color: white;}
+      &:active {background-color: white;}
+    }
+  }
+  &.search {
+    position: relative;
+    top: -22px;
+  }
+  &.select .mat-header-row .mat-header-cell:first-child {
+    margin-left: 28px;
+    width: 52px !important;
+  }
+}
+
+.mat-column-Select {
+  width: 80px !important;
+  flex: none !important;
+}
+
+.mat-column-Delete {
+  width: 80px !important;
+  flex: none !important;
+}
+
+mat-option.delete {
+  color: white !important;
+  background-color: mat-color($min-red) !important;
+}
+
+.label-space {
+  color: #4a4a4a;
+  display: flex;
+  font-size: 14px;
+  padding-bottom: 6px;
+}
+
+.search-icon {
+  color: #c8d1e0;
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,39 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div class="login-container">
+  <form class="login-form" [formGroup]="form" (ngSubmit)="login(form.value)" flex="50">
+    <mat-card class="mat-elevation-z6">
+      <div class="login-header">
+        <img alt="CA" src="assets/CA_r_1c_Black_2014.png" class="login-img">
+        <div class="login-space"></div>
+        <h2 id='login-title' class="login-title">{{title}}</h2>
+      </div>
+      <mat-card-content>
+        <div class="alert">
+          <div *ngIf="error.length > 0">
+            <span id="error">{{error}}</span>
+            <div style="flex: 1 1 auto"></div>
+            <a id="error-close" class="alert-close" (click)="error=''">&times;</a>
+          </div>
+        </div>
+        <label for="login-email" class="label-space">Email</label>
+        <input id='login-email' placeholder="Email" [type]="'email'" formControlName="email"  required>
+        <mat-error id="login-email-error" *ngIf="form.controls['email'].invalid && form.controls['email'].touched">Enter a valid email</mat-error>
+      </mat-card-content>
+      <mat-card-content>
+        <label for="login-password" class="label-space">Password</label>
+        <input id="login-password" placeholder="Password" [type]="'password'" formControlName="password" required>
+        <mat-error id="login-password-error" *ngIf="form.controls['password'].invalid && form.controls['password'].touched">Enter a password</mat-error>
+      </mat-card-content>
+      <mat-card-actions class="login-actions">
+        <div *ngIf="configService.config.auth ==='LOCAL'">
+          <a id="login-forgot-password" (click)="forgotPassword()" href="javascript:;">Forgot Password</a>
+          <div class="space"></div>
+          <a id="login-create-account" (click)="createAccount()" href="javascript:;">Create Account</a>
+        </div>
+        <div class="login-space"></div>
+        <button id="login-submit" [type]="'submit'" mat-raised-button color="primary" [disabled]="!form.valid" layout-align="center">Login</button>
+      </mat-card-actions>
+      <mat-card-footer>&nbsp;</mat-card-footer>
+    </mat-card>
+  </form>
+</div>

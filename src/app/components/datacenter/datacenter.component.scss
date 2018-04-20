@@ -1,0 +1,30 @@
+.edit {
+  cursor: pointer;
+  padding: 6px 32px;
+}
+
+form {
+  max-width: fit-content;
+  margin: 0 auto;
+}
+
+.name.mat-form-field {
+  position: relative;
+  top: -20px;
+}
+
+::ng-deep .name.mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix {
+  border: none !important;
+}
+
+::ng-deep .description.mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix {
+  border: none !important;
+  min-width: 300px;
+  max-width: 300px;
+  & textarea {margin-top: -18px;}
+}
+
+.description textarea {
+  min-height: 60px;
+  max-height: 60px;
+}
